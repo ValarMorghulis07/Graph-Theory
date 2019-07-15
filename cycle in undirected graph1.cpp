@@ -10,71 +10,77 @@
 using namespace std;
 typedef long long int ll;
 
-const ll N=2*10001;
+const ll N=2*100001;
 vector<ll>adj[N];
 bool vis[N];
-ll m,n,ff;
+ll n,e;
 ll dfs(ll u,ll parent)
 {
-    if(!vis[u])
-    {
-        vis[u]=true;
-        for(ll i=0;i<adj[u].size();i++)
-        {
-            ll v=adj[u][i];
-            if(v == parent)
-                continue;
-            else
-              ff=ff || dfs(v,u);
-
-        }
-        return ff;
-    }
-    else
-      return 1;
-
+  vis[u]=1;
+  for(ll i=0;i<adj[u].size();i++)
+  {
+      ll v=adj[u][i];
+      if(!vis[v])
+      {
+          if(dfs(v,u))
+            return 1;
+      }
+      else if(v!=parent)
+        return 1;
+  }
+  return 0;
 }
 
 int main()
 {
-	hs;
-	ll t;
-	cin>>t;
-	f(t)
-	{
-    cin>>n>>m;
-    f(m)
+    hs;
+    ll t;
+    cin>>t;
+    f(t)
     {
-        int a,b;
-        cin>>a>>b;
-        adj[a].pb(b);
-        adj[b].pb(a);
+    cin>>n>>e;
+    f(e)
+    {
+        ll x,y;
+        cin>>x>>y;
+        adj[x].pb(y);
+        adj[y].pb(x);
     }
-     for(ll i=1;i<=n;i++)
-     {
-         ff=0;
-         mem(vis,0);
-         ll zz=0;
-         zz=dfs(i,-1);
-         if(zz==1)
-         {
-             cout<<"YES"<<endl;
-             break;
-         }
-         else if(zz==0 && i==n)
-         {
-            cout<<"NO"<<endl;
-         }
+    ll ff=0;
+    mem(vis,0);
+    for(ll i=1;i<=n;i++)
+    {
+        if(!vis[i])
+        {
+            if(dfs(i,-1))
+            {
+                 cout<<"YES"<<endl;
+                 ff=1;
+                 break;
+            }
 
-     }
-     f(N)
-     {
-         adj[i].clear();
-     }
-	}
-
-
-
-
-	return 0;
+        }
+    }
+    if(ff==0)
+        cout<<"NO"<<endl;
+    f(N)
+    {
+        adj[i].clear();
+    }
+    }
+    return 0;
 }
+
+/*
+https://www.spoj.com/problems/PT07Y/
+https://www.spoj.com/problems/EPIC1304/
+https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/find-the-cycles/
+https://www.hackerrank.com/contests/101hack23/challenges/devu-and-cycles-of-a-graph
+https://www.codechef.com/problems/CHEFCYCL#
+https://www.codechef.com/TESS2018/problems/FOUR#
+https://codeforces.com/contest/915/problem/D
+https://codeforces.com/contest/937/problem/D
+https://codeforces.com/problemset/problem/263/D
+*/
+
+
