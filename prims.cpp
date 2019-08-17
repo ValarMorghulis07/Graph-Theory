@@ -87,7 +87,7 @@ int main()
     return 0;
 
 }
-/*
+/*O(VlogV + ElogV)
 https://www.hackerrank.com/challenges/primsmstsub/problem
 https://www.hackerrank.com/challenges/minimum-mst-graph/problem
 https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/practice-problems/algorithm/pilgrims-and-portals/
