@@ -41,10 +41,10 @@ void shortestpath(ll src)
    {
        ll u=pq.top().second;
        pq.pop();
-       for(ll i =0;i<adj[u].size();i++)
+       for(auto x:adj[u])
        {
-           ll v=adj[u][i].first;
-           ll weight=adj[u][i].second;
+           ll v=x.first;
+           ll weight=x.second;
            if(dist[v]>dist[u]+weight)
            {
                dist[v]=dist[u]+weight;
