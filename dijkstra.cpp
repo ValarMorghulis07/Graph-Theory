@@ -89,7 +89,7 @@ int main()
     return 0;
 }
 
-/*
+/*O(E log V)
 https://www.hackerearth.com/problem/algorithm/dijkstras-cost/
 https://www.hackerearth.com/practice/algorithms/graphs/shortest-path-algorithms/practice-problems/algorithm/ways/
 https://www.hackerearth.com/problem/algorithm/dijkstras/
