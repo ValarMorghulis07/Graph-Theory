@@ -87,7 +87,7 @@ int main()
 }
 
 
-/*
+/*O(ElogV)
 https://www.hackerrank.com/challenges/kruskalmstrsub/problem
 https://www.spoj.com/problems/MST/
 https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/practice-problems/algorithm/mr-president/
