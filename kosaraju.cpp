@@ -97,7 +97,7 @@ int main()
 }
 
 
-/*
+/*O(V+E)
 https://practice.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1
 https://www.hackerrank.com/contests/world-codesprint-11/challenges/hackerland/problem
 https://www.spoj.com/problems/CAPCITY/
