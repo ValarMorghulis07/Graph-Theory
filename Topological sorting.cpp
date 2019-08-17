@@ -71,7 +71,7 @@ int main()
   return 0;
 }
 
-/*
+/* O(V+E)
 https://practice.geeksforgeeks.org/problems/topological-sort/1
 https://www.spoj.com/problems/TOPOSORT/
 https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/practice-problems/algorithm/lonelyisland-49054110/
