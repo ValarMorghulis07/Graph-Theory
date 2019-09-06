@@ -49,11 +49,8 @@ int main()
     }
 
     mem(vis,0);
+    
     for(ll i=1;i<=n;i++)
-    {
-        sort(adj[i].begin(),adj[i].end(),greater<ll>());
-    }
-    for(ll i=n;i>=1;i--)
     {
       if(!vis[i])
       {
