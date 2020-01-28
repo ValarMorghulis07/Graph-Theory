@@ -91,6 +91,7 @@ int main()
 
 /*O(E log V)
 https://www.hackerearth.com/problem/algorithm/dijkstras-cost/
+https://www.hackerearth.com/practice/algorithms/graphs/shortest-path-algorithms/practice-problems/algorithm/booze-first-76e979dd/
 https://www.hackerearth.com/practice/algorithms/graphs/shortest-path-algorithms/practice-problems/algorithm/ways/
 https://www.hackerearth.com/problem/algorithm/dijkstras/
 https://www.hackerrank.com/challenges/dijkstrashortreach/problem
