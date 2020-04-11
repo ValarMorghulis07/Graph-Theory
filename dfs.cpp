@@ -11,36 +11,23 @@ typedef long long int ll;
 
 const ll N=10000;
 vector<ll>adj[N];
+bool vis[N];
 
 
-void dfsutil(ll v,bool vis[])
+void dfs(ll u)
 {
-    vis[v]=true;
-    cout<<v<<" ";
-    for(ll i=0;i<adj[v].size();i++)
+    vis[u]=true;
+    cout<<u<<" ";
+    for(ll i=0;i<adj[u].size();i++)
     {
-        ll s=adj[v][i];
-        if(!vis[s])
-        {
-            dfsutil(s,vis);
-        }
+        ll v=adj[u][i];
+        if(!vis[v])
+           dfs(v);
     }
 
-    f(N)
-    {
-      adj[i].clear();
-    }
-    cout<<"\n";
+    
 }
-void dfs(ll v)
-{
-    bool vis[N];
-    f(N)
-    {
-        vis[i]=false;
-    }
-    dfsutil(v,vis);
-}
+
 
 int main()
 {
@@ -75,6 +62,7 @@ int main()
         }
         ll start;
         cin>>start;
+        mem(vis,0);
         dfs(start);
 
 
