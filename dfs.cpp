@@ -18,11 +18,10 @@ void dfs(ll u)
 {
     vis[u]=true;
     cout<<u<<" ";
-    for(ll i=0;i<adj[u].size();i++)
+    for(auto x:adj[u])
     {
-        ll v=adj[u][i];
-        if(!vis[v])
-           dfs(v);
+      if(!vis[x])
+          dfs(x);
     }
 
     
