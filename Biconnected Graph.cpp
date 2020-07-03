@@ -90,3 +90,8 @@ int main()
  return 0;
 
 }
+
+/*
+1) The graph is connected.
+2) There is not articulation point in graph.
+*/
