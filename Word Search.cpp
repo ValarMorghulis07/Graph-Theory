@@ -86,15 +86,7 @@ int main()
   else
     cout<<"Not Found";
   cout<<"\n";
-  /*rep(i,0,m)
-  {
-   rep(j,0,n)
-   {
-    cout<<ch[i][j];
-   }
-   cout<<"\n";
-  }*/
-
+  
   }
 
  return 0;
