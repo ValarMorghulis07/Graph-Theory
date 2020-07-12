@@ -40,10 +40,10 @@ bool dfs(ll x,ll y,ll idx)
    ch[xx][yy]='$';//  this prevents reusage of characters
    if(dfs(xx,yy,idx+1))
    {
-    ch[xx][yy]=word[idx];// again changing it to its previous state
+    ch[xx][yy]=word[idx];// again changing it to its previous state if solution found
      return true;
    }
-   ch[xx][yy]=word[idx];// again changing it to its previous state
+   ch[xx][yy]=word[idx];// again changing it to its previous state if solution not found
 
 
   }
