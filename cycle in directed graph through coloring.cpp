@@ -13,26 +13,23 @@ typedef long long int ll;
 const ll N=2*100001;
 vector<ll>adj[N];
 ll color[N];
-ll n,e,k;
+ll n,e,k,ff;
 
 
-ll dfs(ll u,ll parent)
+void dfs(ll u,ll parent)
 {
     color[u]=1;
     for(ll i=0;i<adj[u].size();i++)
     {
         ll v=adj[u][i];
         if(color[v]==1)
-            return 1;
+           ff=1
         if(color[v]==0)
-        {
-            if(dfs(v,u))
-                return 1;
-        }
+          dfs(v,u);
 
     }
     color[u]=2;
-    return 0;
+   
 }
 int main()
 {
@@ -49,15 +46,15 @@ int main()
         adj[x].pb(y);
     }
     mem(color,0);
-    ll ff=0;
+    
     for(ll i=1;i<=n;i++)
     {
         if(!color[i])
         {
-            if(dfs(i,-1))
+            dfs(i,-1);
+            if(ff)
             {
               cout<<"Cycle found"<<endl;
-              ff=1;
               break;
 
             }
