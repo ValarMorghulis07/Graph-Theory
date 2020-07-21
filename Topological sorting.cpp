@@ -1,89 +1,103 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 #define mem(dp,a) memset(dp,a,sizeof(dp))
 #define pb(x) push_back(x)
 #define m_p(x,y) make_pair(x,y)
 #define rep(i,a,b) for(ll i=a;i<b;i++)
-#define repush_back(i,a,b) for(ll i=a;i>=b;i--)
-#define f(n) for(ll i=0;i<n;i++)
-#define r(n) for(ll j=0;j<n;j++)
-#define F first
-#define S second
-#define pi 3.14159265359
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
 #define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
 using namespace std;
 typedef long long int ll;
-ll HRX=1e18;
-ll INF=1e9+7;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
 
-const ll N=2*100001;
+
+const ll N=2e5+5;
 vector<ll>adj[N];
 ll col[N];
-//bool vis[N];
 ll n,e,ff;
-stack<ll>s;
+stack<ll>stk;
 
 void dfs(ll u,ll parent)
 {
-  vis[u]=1;
-  color[u]=1;
-  f(adj[u].size())
-  {
-    ll v=adj[u][i];
-    if(color[v]==1)
-       ff=1;
-    if(color[v]==0)
-        dfs(v,u);
-  }
-  color[u]=2;
-  s.push(u);
+ col[u]=1;
+ for(auto xx:adj[u])
+ {
+  if(col[xx]==1)
+    ff=1;
+  if(col[xx]==0)
+    dfs(xx,u);
+ }
+ col[u]=2;
+ stk.push(u);
 }
 
 int main()
 {
-  hs;
-  ll t;
-  cin>>t;
-  f(t)
+ hs;
+ ll t;
+ cin>>t;
+ while(t--)
+ {
+  cin>>n>>e;
+  rep(i,0,e)
   {
-    cin>>n>>e;
-    f(e)
-    {
-      ll x,y;
-      cin>>x>>y;
-      adj[x].pb(y);
-    }
-
-    //mem(vis,0);
-    ff=0;
-    mem(color,0);
-    for(ll i=1;i<=n;i++)
-    {
-      if(!vis[i])
-      {
-        dfs(i,-1);
-      }
-    }
-    if(ff==1)
-      cout<<"No Topo Sort";
-    else
-    {
-       while(!s.empty())
-    {
-      cout<<s.top()<<" ";
-      s.pop();
-    }
-    }
-    cout<<"\n";
-
+   ll x,y;
+   cin>>x>>y;
+   adj[x].pb(y);
   }
-  return 0;
+  ff=0;
+  rep(i,0,N)
+   col[i]=0;
+  rep(i,0,n)
+  {
+   if(col[i]==0)
+    dfs(i,-1);
+  }
+  if(ff==1)
+    cout<<"No Topo Sort";
+  else
+  {
+   while(!stk.empty())
+   {
+    ll xx=stk.top();
+    stk.pop();
+    cout<<xx<<" ";
+   }
+  }
+  cout<<"\n";
+  rep(i,0,N)
+   adj[i].clear();
+
+ }
+ return 0;
 }
 
-/* O(V+E)
-https://practice.geeksforgeeks.org/problems/topological-sort/1
-https://www.spoj.com/problems/TOPOSORT/
-https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/practice-problems/algorithm/lonelyisland-49054110/
-https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/practice-problems/algorithm/oliver-and-the-game-3/
-https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/practice-problems/algorithm/find-the-array-616201fd/
-https://www.hackerrank.com/contests/101hack40/challenges/next-topological-sorting
+/*
+2
+6 6
+5 2
+5 0
+4 0
+4 1
+2 3
+3 1
+5 5
+0 1
+1 2
+2 0
+1 3
+3 4
 */
+
