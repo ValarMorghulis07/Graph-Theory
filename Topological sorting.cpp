@@ -17,19 +17,24 @@ ll INF=1e9+7;
 
 const ll N=2*100001;
 vector<ll>adj[N];
-bool vis[N];
-ll n,e;
+ll col[N];
+//bool vis[N];
+ll n,e,ff;
 stack<ll>s;
 
-void dfs(ll u)
+void dfs(ll u,ll parent)
 {
   vis[u]=1;
+  color[u]=1;
   f(adj[u].size())
   {
     ll v=adj[u][i];
-    if(!vis[v])
-        dfs(v);
+    if(color[v]==1)
+       ff=1;
+    if(color[v]==0)
+        dfs(v,u);
   }
+  color[u]=2;
   s.push(u);
 }
 
@@ -48,19 +53,25 @@ int main()
       adj[x].pb(y);
     }
 
-    mem(vis,0);
-    
+    //mem(vis,0);
+    ff=0;
+    mem(color,0);
     for(ll i=1;i<=n;i++)
     {
       if(!vis[i])
       {
-        dfs(i);
+        dfs(i,-1);
       }
     }
-    while(!s.empty())
+    if(ff==1)
+      cout<<"No Topo Sort";
+    else
+    {
+       while(!s.empty())
     {
       cout<<s.top()<<" ";
       s.pop();
+    }
     }
     cout<<"\n";
 
