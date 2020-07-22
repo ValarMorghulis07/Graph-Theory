@@ -1,3 +1,14 @@
+We regard
+
+a cell in the matrix as a node,
+a directed edge from node x to node y if x and y are adjacent and x's value > y's value
+Topological sort is always helpful to problems in a DAG.
+
+The longest path is actually the longest chain of nodes in the topological order.
+
+So we use BFS to implement the topological sort, and maintain the length.
+
+
 int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
 class Solution {
 public:
