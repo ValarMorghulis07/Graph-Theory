@@ -1,15 +1,17 @@
-class Solution {
-public:
-    /*
+  /*
     Time Complexity: O(M^2*N)
     where M is the length of each word and N is the total number of words in the input word       list.
     Space Complexity: O(M^2*N)
     */
+   class Solution {
+public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList)
     {
      unordered_set<string>ss;
      for(int i=0;i<wordList.size();i++)
-         ss.insert(wordList[i]);
+       ss.insert(wordList[i]); 
+     if(ss.find(endWord)==ss.end())
+         return 0;
      int level=1;
      queue<string>q;
      q.push(beginWord);
@@ -30,7 +32,8 @@ public:
          {
           word[j]='a'+k;
           if(ss.find(word)!=ss.end())
-            q.push(word);
+            ss.erase(word),q.push(word);// Remove all words from dict after pushing in queue 
+          
          }
          word[j]=ch;
        }
