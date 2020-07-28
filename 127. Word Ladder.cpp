@@ -32,7 +32,7 @@ public:
          {
           word[j]='a'+k;
           if(ss.find(word)!=ss.end())
-            ss.erase(word),q.push(word);// Remove all words from dict after pushing in queue 
+            ss.erase(word),q.push(word);// Remove all words from dict if found and  push it in queue 
           
          }
          word[j]=ch;
