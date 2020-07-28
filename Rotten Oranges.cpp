@@ -1,87 +1,60 @@
-#include <bits/stdc++.h>
-#define mem(dp,a) memset(dp,a,sizeof(dp))
-#define pb(x) push_back(x)
-#define m_p(x,y) make_pair(x,y)
-#define rep(i,a,b) for(ll i=a;i<b;i++)
-#define repush_back(i,a,b) for(ll i=a;i>=b;i--)
-#define f(n) for(ll i=0;i<n;i++)
-#define r(n) for(ll j=0;j<n;j++)
-#define F first
-#define S second
-#define pi 3.14159265359
-#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
-using namespace std;
-typedef long long int ll;
-ll HRX=1e18;
-ll INF=1e9+7;
-
-
-int main()
-{
- hs;
- ll t;
- cin>>t;
- f(t)
- {
-  ll m,n;
-  cin>>m>>n;
-  ll a[m][n];
-  queue<pair<ll,ll>>q;
-  f(m)
-  {
-   r(n)
-   {
-    cin>>a[i][j];
-    if(a[i][j]==2)
-      q.push(m_p(i,j));
-   }
-  }
-  ll time=0;
-  while(!q.empty())
-  {
-   ll zz=q.size();
-   for(ll i=0;i<zz;i++)
-   {
-    ll x=q.front().first;
-    ll y=q.front().second;
-    if(y-1>=0 && a[x][y-1]==1)
+int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) 
     {
-     a[x][y-1]=2;
-     q.push(m_p(x,y-1));
-    }
-    if(y+1<n && a[x][y+1]==1)
-    {
-     a[x][y+1]=2;
-     q.push(m_p(x,y+1));
-    }
-    if(x-1>=0 && a[x-1][y]==1)
-    {
-     a[x-1][y]=2;
-     q.push(m_p(x-1,y));
-    }
-    if(x+1<m && a[x+1][y]==1)
-    {
-     a[x+1][y]=2;
-     q.push(m_p(x+1,y));
-    }
-   }
-   time++;
-  }
-  for(ll i=0;i<m;i++)
-  {
-    for(ll j=0;j<n;j++)
-    {
-     if(a[i][j]==1)
+     int m=grid.size();
+     if(m==0)
+         return 0;
+     int n=grid[0].size();
+     queue<pair<int,int>>q;
+     bool ff=0,gg=0;
+     for(int i=0;i<m;i++)
      {
-      time=0;
-      break;
+      for(int j=0;j<n;j++)
+      {
+       if(grid[i][j]==2)
+          ff=1,q.push(make_pair(i,j));
+       if(grid[i][j]==1)
+           gg=1;
+      }
      }
+     if(!gg)
+         return 0;
+     if(!ff)
+         return -1;
+     int ans=0;
+     while(!q.empty())
+     {
+      int zz=q.size();
+      for(int i=0;i<zz;i++)
+      {
+       pair temp=q.front();
+       q.pop();
+       int x=temp.first,y=temp.second;
+       for(int k=0;k<4;k++)
+       {
+        int xx=x+dir[k][0];
+        int yy=y+dir[k][1];
+        if(xx>=0 && xx<m && yy>=0 && yy<n && grid[xx][yy]==1)
+        {
+         grid[xx][yy]=2;
+         q.push(make_pair(xx,yy));
+        }
+       }
+      }
+      ans++;
+     }
+     for(int i=0;i<m;i++)
+     {
+      for(int j=0;j<n;j++)
+      {
+        if(grid[i][j]==1)
+            return -1;
+      }
+     }
+     return (ans-1);
+         
+     
     }
-    if(time==0)
-     break;
-  }
-  cout<<time-1<<endl;
-
- }
- return 0;
-}
+};
