@@ -1,86 +1,63 @@
-#include<bits/stdc++.h>
-#define mem(dp,a) memset(dp,a,sizeof(dp))
-#define pb(x) push_back(x)
-#define m_p(x,y) make_pair(x,y)
-#define rep(i,a,b) for(ll i=a;i<b;i++)
-#define repush_back(i,a,b) for(ll i=a;i>=b;i--)
-#define f(n) for(ll i=0;i<n;i++)
-#define r(n) for(ll j=0;j<n;j++)
-#define F first
-#define S second
-#define pi 3.14159265359
-#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
-using namespace std;
-typedef long long int ll;
-ll HRX=1e18;
-ll INF=1e9+7;
-
-const ll N=30;
+const int N=505;
 bool vis[N][N];
-ll n,m;
-ll dir[][2]={{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{-1,2},{1,-2},{-1,-2}};
+int dir[][2]={{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
 
 
-ll bfs(ll sx,ll sy,ll dx,ll dy)
+int Solution::knight(int A, int B, int C, int D, int E, int F) 
 {
- ll dist[n+1][m+1];
- f(n+1)
+ int grid[A][B];
+ C--;D--;E--;F--;
+ if(E<0 || E>=500 || F<0 || F>=500)
+  return -1;
+ if(C==E && D==F)
+  return 0;
+ int dist[A][B];
+ memset(vis,0,sizeof(vis));
+ int sx=C,sy=D,dx=E,dy=F;
+ for(int i=0;i<A;i++)
  {
-  r(m+1)
+  for(int j=0;j<B;j++)
   {
-   dist[i][j]=HRX;
-   vis[i][j]=0;
+   dist[i][j]=INT_MAX; 
+   
   }
  }
- queue<pair<ll,ll>>q;
- if(!vis[sx][sy])
-    vis[sx][sy]=1;
- q.push(m_p(sx,sy));
  dist[sx][sy]=0;
+ queue<pair<int,int>>q;
+ q.push(make_pair(sx,sy));
+ vis[sx][sy]=1;
  while(!q.empty())
  {
-  pair<ll,ll>temp=q.front();
+  pair temp=q.front();
   q.pop();
-  for(ll i=0;i<8;i++)
+  int x=temp.first;
+  int y=temp.second;
+  for(int i=0;i<8;i++)
   {
-    ll tx=temp.first;
-    ll ty=temp.second;
-    ll xx=tx+dir[i][0];
-    ll yy=ty+dir[i][1];
-    if(!vis[xx][yy] && xx>=0 && yy>=0 && xx<n && yy<m)
-    {
+   int xx=x+dir[i][0];
+   int yy=y+dir[i][1];
+   if(xx>=0 && xx<A && yy>=0 && yy<B && !vis[xx][yy])
+   {
      vis[xx][yy]=1;
-     dist[xx][yy]=dist[tx][ty]+1;
-     q.push(m_p(xx,yy));
-    }
+     dist[xx][yy]=1+dist[x][y];
+     q.push(make_pair(xx,yy));
+   }
   }
  }
- if(dist[dx][dy]!=HRX)
-    cout<<dist[dx][dy]<<endl;
- else
-    cout<<"-1"<<endl;
-
-}
-int main()
-{
- hs;
- ll t;
- cin>>t;
- f(t)
+ 
+ /*for(int i=0;i<A;i++)
  {
-  cin>>n>>m;
-  ll sx,sy,dx,dy;
-  cin>>sx>>sy>>dx>>dy;
-  sx--;
-  sy--;
-  dx--;
-  dy--;
-
-  if(sx==dx && sy==dy)
-    cout<<"0"<<endl;
-  else
-    bfs(sx,sy,dx,dy);
-
- }
- return 0;
+  for(int j=0;j<B;j++)
+  {
+    cout<<dist[i][j]<<" ";
+  }
+  cout<<"\n";
+ }*/
+ if(dist[dx][dy]!=INT_MAX)
+  return dist[dx][dy];
+ else
+  return -1;
+ 
+ 
+    
 }
