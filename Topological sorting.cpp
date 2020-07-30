@@ -34,10 +34,11 @@ void dfs(ll u)// Topological sorting for Directed Acyclic Graph (DAG)
  col[u]=1;
  for(auto xx:adj[u])
  {
+   if(col[xx]==0)
+    dfs(xx);
   if(col[xx]==1)
     ff=1;
-  if(col[xx]==0)
-    dfs(xx);
+ 
  }
  col[u]=2;
  stk.push(u);
