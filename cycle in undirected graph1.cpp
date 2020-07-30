@@ -71,7 +71,7 @@ int main()
     return 0;
 }
 
-/*
+/*o(V+E) and o(V)
 https://www.spoj.com/problems/PT07Y/
 https://www.spoj.com/problems/EPIC1304/
 https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/find-the-cycles/
