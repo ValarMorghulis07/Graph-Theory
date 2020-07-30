@@ -40,6 +40,14 @@ ll root(ll x)
  return x;
 }
 
+ bool find(ll A,ll B)
+ {
+        if( root(A)==root(B) )       //if A and B have the same root, it means that they are connected.
+        return true;
+        else
+        return false;
+ }
+
 
 int main()
 {
