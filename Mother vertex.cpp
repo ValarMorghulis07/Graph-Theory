@@ -70,3 +70,4 @@ int findMother(int V, vector<int> adj[])
 }
 
 // There can be more than one mother vertices in a graph. We need to output anyone of them
+// If there exist mother vertex (or vertices), then one of the mother vertices is the last finished vertex in DFS.
