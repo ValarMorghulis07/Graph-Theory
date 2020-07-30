@@ -84,3 +84,5 @@ int main()
  return 0;
 
 }
+
+// A DAG G has at least one vertex with in-degree 0 and one vertex with out-degree 0.
