@@ -24,7 +24,7 @@ public:
        q.pop();
        if(word==endWord)
            return level;
-       ss.erase(word);
+      // ss.erase(word);
        for(int j=0;j<word.length();j++)
        {
          char ch=word[j];
