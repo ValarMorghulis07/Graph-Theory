@@ -29,7 +29,7 @@ ll col[N];
 ll n,e,ff;
 stack<ll>stk;
 
-void dfs(ll u,ll parent)
+void dfs(ll u,ll parent)// Topological sorting for Directed Acyclic Graph (DAG)
 {
  col[u]=1;
  for(auto xx:adj[u])
