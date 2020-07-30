@@ -100,4 +100,4 @@ int main()
 1 3
 3 4
 */
-
+// The first vertex in topological sorting is always a vertex with in-degree as 0 (a vertex with no incoming edges).
