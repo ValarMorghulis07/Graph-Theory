@@ -29,7 +29,7 @@ ll col[N];
 ll n,e,ff;
 stack<ll>stk;
 
-void dfs(ll u,ll parent)// Topological sorting for Directed Acyclic Graph (DAG)
+void dfs(ll u)// Topological sorting for Directed Acyclic Graph (DAG)
 {
  col[u]=1;
  for(auto xx:adj[u])
@@ -37,7 +37,7 @@ void dfs(ll u,ll parent)// Topological sorting for Directed Acyclic Graph (DAG)
   if(col[xx]==1)
     ff=1;
   if(col[xx]==0)
-    dfs(xx,u);
+    dfs(xx);
  }
  col[u]=2;
  stk.push(u);
@@ -63,7 +63,7 @@ int main()
   rep(i,0,n)
   {
    if(col[i]==0)
-    dfs(i,-1);
+    dfs(i);
   }
   if(ff==1)
     cout<<"No Topo Sort";
