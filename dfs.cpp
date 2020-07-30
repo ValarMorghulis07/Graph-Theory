@@ -13,8 +13,26 @@ const ll N=10000;
 vector<ll>adj[N];
 bool vis[N];
 
+void dfs(ll u) //Iterative
+{
+  stack<ll>stk;
+  stk.push(u);
+  while(!stk.empty())
+  {
+    ll v=stk.top();
+    stk.pop();
+    cout<<v<<" ";
+    vis[v]=1;
+    for(auto xx:adj[v])
+    {
+      if(!vis[xx])
+          stk.push(xx);
+    }
+  }
+}
 
-void dfs(ll u)
+
+void dfs(ll u) //Recursive
 {
     vis[u]=true;
     cout<<u<<" ";
@@ -23,8 +41,6 @@ void dfs(ll u)
       if(!vis[x])
           dfs(x);
     }
-
-    
 }
 
 
