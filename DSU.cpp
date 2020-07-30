@@ -15,6 +15,8 @@ typedef long long int ll;
 ll HRX=1e18;
 ll INF=1e9+7;
 
+//When you use the weighted-union operation with path compression it takes log * N for each union find operation, where N is the number of elements in the set.
+
 const ll N=1e3+7;
 vector<ll>adj[N];
 ll id[N],sze[N];
