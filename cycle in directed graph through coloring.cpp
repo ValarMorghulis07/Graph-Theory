@@ -16,7 +16,7 @@ ll color[N];
 ll n,e,k,ff;
 
 
-void dfs(ll u,ll parent)
+void dfs(ll u)
 {
     color[u]=1;
     for(ll i=0;i<adj[u].size();i++)
@@ -25,7 +25,7 @@ void dfs(ll u,ll parent)
         if(color[v]==1)
            ff=1
         if(color[v]==0)
-          dfs(v,u);
+          dfs(v);
 
     }
     color[u]=2;
@@ -51,7 +51,7 @@ int main()
     {
         if(!color[i])
         {
-            dfs(i,-1);
+            dfs(i);
             if(ff)
             {
               cout<<"Cycle found"<<endl;
