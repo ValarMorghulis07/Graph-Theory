@@ -19,11 +19,14 @@ void dfs(ll u) //Iterative
   stk.push(u);
   while(!stk.empty())
   {
-    ll v=stk.top();
+    u=stk.top();
     stk.pop();
-    cout<<v<<" ";
-    vis[v]=1;
-    for(auto xx:adj[v])
+    if(!vis[u])
+    {
+     cout<<u<<" ";
+     vis[u]=1;
+    }
+    for(auto xx:adj[u])
     {
       if(!vis[xx])
           stk.push(xx);
