@@ -68,3 +68,5 @@ int findMother(int V, vector<int> adj[])
 
 
 }
+
+// There can be more than one mother vertices in a graph. We need to output anyone of them
