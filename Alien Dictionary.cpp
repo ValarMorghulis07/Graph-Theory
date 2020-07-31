@@ -25,7 +25,7 @@ ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
 const ll N=26;
 vector<ll>adj[N];
 bool vis[N];
-unordered_set<char>ss;
+unordered_set<ll>ss;
 stack<ll>stk;
 
 void dfs(ll u)
