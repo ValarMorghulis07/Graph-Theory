@@ -45,9 +45,9 @@ int main()
   adj[x].pb(y);
   adj[y].pb(x);
  }
- dfs(1,0,0);
+ dfs(1,-1,0);
  dist=-1;
- dfs(node,node,0);
+ dfs(node,-1,0);
  cout<<dist<<"\n";
  return 0;
 
