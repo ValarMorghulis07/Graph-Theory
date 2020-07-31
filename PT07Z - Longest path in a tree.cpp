@@ -17,7 +17,7 @@ ll INF=1e9+7;
 
 const ll N=1e4+7;
 vector<ll>adj[N];
-ll node,n,dist=-1;
+ll node,n,dist;
 
 void dfs(ll u,ll par,ll lev)
 {
@@ -45,6 +45,7 @@ int main()
   adj[x].pb(y);
   adj[y].pb(x);
  }
+ dist=-1;
  dfs(1,-1,0);
  dist=-1;
  dfs(node,-1,0);
