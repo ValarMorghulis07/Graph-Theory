@@ -88,12 +88,17 @@ int main()
     vis[i][j]=0;
    }
   }
+  if(a[0][0]==0)
+   cout<<"-1"<<"\n";;
+  else
+  {
   path(0,0);
   sort(vec.begin(),vec.end());
 
   f(vec.size())
    cout<<vec[i]<<" ";
   cout<<"\n";
+  }
  }
  return 0;
 
