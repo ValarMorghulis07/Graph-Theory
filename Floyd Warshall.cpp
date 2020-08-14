@@ -32,8 +32,8 @@ void floyddWarshall(ll n)
   {
    for(ll j=0;j<n;j++)
    {
-    if(dist[i][j]>dist[i][k]+dist[k][n])
-        dist[i][j]=dist[i][k]+dist[k][n];
+    if(dist[i][j]>dist[i][k]+dist[k][j])
+        dist[i][j]=dist[i][k]+dist[k][j];
    }
   }
  }
