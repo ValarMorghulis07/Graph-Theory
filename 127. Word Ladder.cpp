@@ -1,6 +1,6 @@
   /*
     Time Complexity: O(M^2*N)
-    where M is the length of each word and N is the total number of words in the input word       list.
+    where M is the length of each word and N is the total number of words in the input word list.
     Space Complexity: O(M^2*N)
     */
    class Solution {
