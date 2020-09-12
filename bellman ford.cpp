@@ -44,7 +44,7 @@ void belford(ll start)
             ll u=adj[j].second.first;
             ll v=adj[j].second.second;
             ll weight=adj[j].first;
-            if(dist[u]!=INT_MAX && dist[v]>dist[u]+weight)
+            if(dist[u]!=INT_MAX && dist[v]>dist[u]+weight) // from wg=hich node u are updating that should not be INFINITY.
             {
               cout<<"graph contains negative weight cycle"<<endl;
               ff=1;
