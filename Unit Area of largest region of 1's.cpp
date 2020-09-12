@@ -38,7 +38,7 @@ public:
        }
       }
      }
-     return max(maxx,cnt);
+     return max(maxx,cnt); // [[1]] for this ,maxx=0 and cnt=1
      
     }
 };
