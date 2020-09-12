@@ -21,7 +21,7 @@ ll n,e,ff=0;
 bool vis[N];
 bool color[N];
 
-bool isbipartite(ll u,bool col)
+void isbipartite(ll u,bool col)
 {
  vis[u]=1;
  color[u]=col;
