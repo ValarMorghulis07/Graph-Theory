@@ -37,3 +37,5 @@ int main()
  }
  return 0;
 }
+
+// Given a directed and connected graph with n nodes. If there is an edge from u to v then u depends on v.
