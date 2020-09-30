@@ -56,7 +56,7 @@ public:
           continue;
       dfs(xx,u);
       subtree[u]+=subtree[xx]; // cnt subtrees in node u
-      dist[u]+=dist[xx]+subtree[xx]; // add sum of distances from node node u to all downward nodes
+      dist[u]+=dist[xx]+subtree[xx]; // add sum of distances from node node u to all downward nodes --> if u r just asked to do the same thing just below the node u,then this is only sufficient.
      }
     }
     
