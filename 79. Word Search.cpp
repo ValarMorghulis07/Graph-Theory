@@ -16,10 +16,10 @@ public:
    board[xx][yy]='$';//  this prevents reusage of characters
    if(dfs(board,word,m,n,xx,yy,idx+1))
    {
-    board[xx][yy]=word[idx];// again changing it to its previous state
+    board[xx][yy]=word[idx];// again changing it to its previous state, if found
      return true;
    }
-   board[xx][yy]=word[idx];// again changing it to its previous state
+   board[xx][yy]=word[idx];// again changing it to its previous state, if not found
 
 
   }
