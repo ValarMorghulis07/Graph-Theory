@@ -43,7 +43,7 @@ public:
         }
        }
       }
-      ans++;
+      ans++; // after complete rotting it is counted one more time
      }
      for(int i=0;i<m;i++)
      {
