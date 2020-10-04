@@ -14,7 +14,7 @@ const ll N=2*100001;
 vector<ll>adj[N];
 bool vis[N];
 ll n,e;
-ll dfs(ll u,ll parent) //if there is an adjacent vertex which is visited but not the parent,then cycle exists
+ll dfs(ll u,ll parent) //if there is an adjacent vertex which is visited but not the parent,then cycle exists--> means back edge is there
 {
   vis[u]=1;
   for(ll i=0;i<adj[u].size();i++)
