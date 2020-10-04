@@ -51,3 +51,5 @@ public:
      return ff==1;
     }
 };
+
+// What is the time complexity? I think it is O(N^2 * 4^k) where k is the length of word
