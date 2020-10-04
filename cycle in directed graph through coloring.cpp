@@ -79,5 +79,6 @@ WHITE : Vertex is not processed yet. Initially, all vertices are WHITE.
 
 GRAY: Vertex is being processed (DFS for this vertex has started, but not finished which means that all descendants (in DFS tree) of this vertex are not processed yet (or this vertex is in the function call stack)
 
-BLACK : Vertex and all its descendants are processed. While doing DFS, if an edge is encountered from current vertex to a GRAY vertex, then this edge is back edge and hence there is a cycle.
+BLACK : Vertex and all its descendants are processed. While doing DFS, 
+if an edge is encountered from current vertex to a GRAY vertex, then this edge is back edge and hence there is a cycle.
 */
