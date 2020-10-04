@@ -1,9 +1,6 @@
 
 int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
 
-
-
-
 class Solution {
 public:
     bool dfs(vector<vector<char>>& board,string word,int m,int n,int x,int y,int idx)
