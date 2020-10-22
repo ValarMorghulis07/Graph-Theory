@@ -1,4 +1,6 @@
-  /*
+ // 127. Word Ladder 
+
+/*
     Time Complexity: O(M^2*N)
     where M is the length of each word and N is the total number of words in the input word list.
     Space Complexity: O(M^2*N)
@@ -43,3 +45,176 @@ public:
      return 0;
     }
 };
+
+// 79. Word Search
+
+int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+
+class Solution {
+public:
+   bool dfs(vector<vector<char>>& board,string word,int m,int n,int x,int y,int idx)
+   {
+    for(int i=0;i<4;i++)
+    {
+    int xx=x+dir[i][0];
+    int yy=y+dir[i][1];
+    if(idx==word.length())
+      return true;
+    if(xx>=0 && xx<m && yy>=0 && yy<n && idx<word.length() && board[xx][yy]==word[idx])
+    {
+     board[xx][yy]='$';//  this prevents reusage of characters
+     if(dfs(board,word,m,n,xx,yy,idx+1))
+     {
+      board[xx][yy]=word[idx];// again changing it to its previous state, if found
+      return true;
+     }
+     board[xx][yy]=word[idx];// again changing it to its previous state, if not found
+    }
+   }
+    return false;
+   }
+    
+    bool exist(vector<vector<char>>& board, string word) 
+    {
+     if(word.length()==0)
+         return 1;
+     int m=board.size();
+     int n=board[0].size();
+     bool ff=0;
+     vector<pair<int,int>>vv;
+     for(int i=0;i<m;i++)
+     {
+      for(int j=0;j<n;j++)
+      {
+       if(board[i][j]==word[0])
+       {
+        board[i][j]='$';
+        if(dfs(board,word,m,n,i,j,1))
+            ff=1;
+        board[i][j]=word[0];
+       }
+      }
+     }
+    
+     
+     return ff==1;
+    }
+};
+
+// What is the time complexity? I think it is O(N^2 * 4^k) where k is the length of word
+
+
+// 399. Evaluate Division
+
+class Solution {
+public:
+    unordered_map<string,vector<pair<string,double>>>mp;
+    double bfs(string src,string dest)
+    {
+     if(mp.find(src)==mp.end() || mp.find(dest)==mp.end())
+         return -1.0;
+     unordered_map<string,bool>vis;
+     queue<pair<string,double>>q;
+     q.push({src,1.0});
+     vis[src]=1;
+     while(!q.empty())
+     {
+      string u=q.front().first;
+      double val=q.front().second;
+      if(u==dest)
+          return val;
+      q.pop();
+      for(auto xx:mp[u])
+      {
+       if(!vis[xx.first])
+       {
+        vis[xx.first]=1;
+        q.push({xx.first,val*xx.second});
+       }
+      }
+     }
+     return -1.0;
+    }
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries)
+    {
+     mp.clear();
+     vector<double>ans;
+     for(int i=0;i<equations.size();i++)
+     {
+      mp[equations[i][0]].push_back({equations[i][1],values[i]});
+      mp[equations[i][1]].push_back({equations[i][0],1.0/values[i]});
+     }
+     for(int i=0;i<queries.size();i++)
+       ans.push_back(bfs(queries[i][0],queries[i][1]));
+     return ans;
+     
+     
+    }
+};
+
+
+// Knight Walk
+
+const int N=505;
+bool vis[N][N];
+int dir[][2]={{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
+
+
+int Solution::knight(int A, int B, int C, int D, int E, int F) 
+{
+ int grid[A][B];
+ C--;D--;E--;F--;
+ if(E<0 || E>=500 || F<0 || F>=500)
+  return -1;
+ if(C==E && D==F)
+  return 0;
+ int dist[A][B];
+ memset(vis,0,sizeof(vis));
+ int sx=C,sy=D,dx=E,dy=F;
+ for(int i=0;i<A;i++)
+ {
+  for(int j=0;j<B;j++)
+  {
+   dist[i][j]=INT_MAX; 
+   
+  }
+ }
+ dist[sx][sy]=0;
+ queue<pair<int,int>>q;
+ q.push(make_pair(sx,sy));
+ vis[sx][sy]=1;
+ while(!q.empty())
+ {
+  pair temp=q.front();
+  q.pop();
+  int x=temp.first;
+  int y=temp.second;
+  for(int i=0;i<8;i++)
+  {
+   int xx=x+dir[i][0];
+   int yy=y+dir[i][1];
+   if(xx>=0 && xx<A && yy>=0 && yy<B && !vis[xx][yy])
+   {
+     vis[xx][yy]=1;
+     dist[xx][yy]=1+dist[x][y];
+     q.push(make_pair(xx,yy));
+   }
+  }
+ }
+ 
+ /*for(int i=0;i<A;i++)
+ {
+  for(int j=0;j<B;j++)
+  {
+    cout<<dist[i][j]<<" ";
+  }
+  cout<<"\n";
+ }*/
+ if(dist[dx][dy]!=INT_MAX)
+  return dist[dx][dy];
+ else
+  return -1;
+ 
+ 
+    
+}
