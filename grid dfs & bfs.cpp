@@ -322,6 +322,131 @@ int Solution::knight(int A, int B, int C, int D, int E, int F)
 }
 
 
+// shortest path from source to destination in grid
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=1e3+7;
+char ch[N][N];
+bool vis[N][N];
+ll m,n,sx,sy,dx,dy;
+
+void bfs()
+{
+ ll dist[m][n];
+ ll parent[m][n][2];
+ rep(i,0,m)
+ {
+  rep(j,0,n)
+  {
+   dist[i][j]=ESP;
+   parent[i][j][0]=-1;
+   parent[i][j][1]=-1;
+  }
+ }
+ queue<pair<ll,ll>>q;
+ q.push({sx,sy});
+ dist[sx][sy]=0;
+ mem(vis,0);
+ vis[sx][sy]=1;
+ while(!q.empty())
+ {
+  ll x=q.front().ff;
+  ll y=q.front().ss;
+  q.pop();
+  rep(i,0,4)
+  {
+   ll xx=x+dir[i][0];
+   ll yy=y+dir[i][1];
+   if(xx>=0 && xx<m && yy>=0 && yy<n &&  !vis[xx][yy] && ch[xx][yy]!='#')
+   {
+    vis[xx][yy]=1;
+    dist[xx][yy]=1+dist[x][y];
+    parent[xx][yy][0]=x;
+    parent[xx][yy][1]=y;
+    q.push({xx,yy});
+   }
+  }
+ }
+
+ if(dist[dx][dy]==ESP)
+    cout<<"NO"<<"\n";
+ else
+ {
+  cout<<"YES"<<"\n";
+  cout<<dist[dx][dy]<<"\n";
+  string path="";
+  while(dx!=-1 && dy!=-1)
+  {
+   if(dy==parent[dx][dy][1])
+   {
+   if(parent[dx][dy][0]-dx==1)
+     path+='U';
+   else
+     path+='D';
+   }
+   else if(dx==parent[dx][dy][0])
+   {
+   if(dy-parent[dx][dy][1]==1)
+     path+='R';
+   else
+     path+='L';
+   }
+   ll pp=parent[dx][dy][0];
+   ll qq=parent[dx][dy][1];
+   dx=pp;
+   dy=qq;
+  }
+  reverse(path.begin(),path.end());
+  cout<<path<<"\n";
+ }
+}
+
+
+int main()
+{
+ hs;
+ cin>>m>>n;
+ rep(i,0,m)
+ {
+  rep(j,0,n)
+  {
+   cin>>ch[i][j];
+   if(ch[i][j]=='A')
+     sx=i,sy=j;
+   if(ch[i][j]=='B')
+     dx=i,dy=j;
+  }
+ }
+ bfs();
+ return 0;
+
+}
+
+
+
 // Minimum Cost Path
 
 
