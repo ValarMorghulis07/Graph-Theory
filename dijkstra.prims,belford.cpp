@@ -32,6 +32,8 @@ void shortestpath(ll src)
    priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
    ll dist[n];
    ll parent[n];
+   bool vis[n];
+   mem(vis,0);
    for(ll i=1;i<=n;i++)
     {
         dist[i]=INF;
@@ -43,6 +45,8 @@ void shortestpath(ll src)
    {
        ll u=pq.top().second;
        pq.pop();
+       if(vis[u])continue;
+       vis[u]=1;
        for(auto x:adj[u])
        {
            ll v=x.first;
