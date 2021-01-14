@@ -32,7 +32,7 @@ void shortestpath(ll src)
    priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
    ll dist[n];
    ll parent[n];
-   bool vis[n];
+   bool vis[n]; // must use it (CSES TC without it gives TLE)
    mem(vis,0);
    for(ll i=1;i<=n;i++)
     {
