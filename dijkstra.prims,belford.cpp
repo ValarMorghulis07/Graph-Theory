@@ -435,58 +435,53 @@ typedef long long int ll;
 typedef long double ld;
 ll ESP=1e18;
 ll FCB=1e9+7;
+ll prime=119;
 ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
 /*
  freopen("in.txt","r",stdin);
  freopen("out.txt","w",stdout);
 */
 
-const ll N=1e3+7;
+const ll N=505;
 ll dist[N][N];
+ll n,e,q;
 
-void floyddWarshall(ll n)
+void floydd()
 {
- for(ll k=0;k<n;k++)
- {
-  for(ll i=0;i<n;i++)
-  {
-   for(ll j=0;j<n;j++)
-   {
-    if(dist[i][j]>dist[i][k]+dist[k][j])
-        dist[i][j]=dist[i][k]+dist[k][j];
-   }
-  }
- }
+ rep(k,1,n+1)
+  rep(i,1,n+1)
+    rep(j,1,n+1)
+      if(dist[i][j]>dist[i][k]+dist[k][j])
+         dist[i][j]=dist[i][k]+dist[k][j];
+
 }
 
 int main()
 {
  hs;
- ll t;
- cin>>t;
- while(t--)
+ cin>>n>>e>>q;
+ rep(i,0,N)
+  rep(j,0,N)
+    dist[i][j]=ESP;
+ rep(i,0,N)
+   dist[i][i]=0;
+ rep(i,0,e)
  {
-  ll n;
-  cin>>n;
-  ll dist[n][n];
-  rep(i,0,n)
-  {
-   rep(j,0,n)
-   {
-    cin>>dist[i][j];
-   }
-  }
-  floyddWarshall(n);
-  rep(i,0,n)
-  {
-   rep(j,0,n)
-   {
-    cout<<dist[i][j]<<" ";
-   }
-   cout<<"\n";
-  }
-
+  ll x,y,w;
+  cin>>x>>y>>w;
+  dist[x][y]=min(dist[x][y],w); // if(multiple edges are there)
+  dist[y][x]=min(dist[y][x],w);
+ }
+ floydd();
+ while(q--)
+ {
+  ll x,y;
+  cin>>x>>y;
+  if(dist[x][y]!=ESP)
+    cout<<dist[x][y]<<"\n";
+  else
+    cout<<"-1"<<"\n";
  }
  return 0;
-}
 
+}
