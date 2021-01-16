@@ -366,4 +366,113 @@ int main()
 //O(V+E)
 
 
+// print cycle in undirected graph (Round Trip-CSES)
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=1e5+7;
+vector<ll>adj[N];
+bool vis[N];
+ll n,e,start,endd;
+ll parent[N];
+
+
+bool dfs(ll u,ll par)
+{
+ vis[u]=1;
+ parent[u]=par;
+ for(auto xx:adj[u])
+ {
+  if(!vis[xx])
+  {
+    if(dfs(xx,u))
+        return 1;
+  }
+  else if(xx!=par)
+  {
+   start=xx;
+   endd=u;
+   return 1;
+  }
+ }
+
+ return 0;
+}
+
+int main()
+{
+ hs;
+ cin>>n>>e;
+ rep(i,0,e)
+ {
+  ll x,y;
+  cin>>x>>y;
+  adj[x].pb(y);
+  adj[y].pb(x);
+ }
+ bool ff=0;
+ mem(vis,0);
+ rep(i,1,n+1)
+ {
+  if(!vis[i])
+  {
+   if(dfs(i,-1))
+   {
+    ff=1;
+    break;
+   }
+
+  }
+ }
+ if(!ff)
+    cout<<"IMPOSSIBLE";
+ else
+ {
+  vector<ll>vv;
+  ll zz=endd;
+  while(zz!=start)
+  {
+   vv.pb(zz);
+   zz=parent[zz];
+  }
+  vv.pb(start);
+  reverse(vv.begin(),vv.end());
+  vv.pb(start);
+  cout<<vv.size()<<"\n";
+  rep(i,0,vv.size())
+   cout<<vv[i]<<" ";
+ }
+ return 0;
+
+}
+/*
+5 5
+5 1
+1 2
+2 3
+3 4
+4 2
+*/
 
