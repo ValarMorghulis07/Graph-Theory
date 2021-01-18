@@ -591,7 +591,7 @@ int main()
 
 /*
 
-If there is a positive weight cycle which comprises  src && dest then you have to print -1 in that case.
+If there is a positive weight cycle which comprises  src or dest then you have to print -1 in that case.
 3 4
 2 1 4
 1 2 -3
