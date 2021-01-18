@@ -484,3 +484,128 @@ int main()
  }
  return 0;
 }
+
+// single souce longest path (bellford) --> // https://cses.fi/problemset/task/1673
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=5010;
+pair<ll,pair<ll,ll>>adj[N];
+vector<ll>adj1[N],adj2[N];
+bool vis1[N],vis2[N];
+ll n,e;
+
+void dfs1(ll u)
+{
+ vis1[u]=1;
+ for(auto xx:adj1[u])
+ {
+  if(!vis1[xx])
+    dfs1(xx);
+ }
+}
+
+void dfs2(ll u)
+{
+ vis2[u]=1;
+ for(auto xx:adj2[u])
+ {
+  if(!vis2[xx])
+    dfs2(xx);
+ }
+}
+
+void bellford(ll src)
+{
+ ll dist[n+1];
+ rep(i,0,n+1)
+  dist[i]=ESP;
+ dist[src]=0;
+ bool ff=0;
+ rep(i,0,n)
+ {
+  rep(j,0,e)
+  {
+   ll u=adj[j].ss.ff;
+   ll v=adj[j].ss.ss;
+   ll w=adj[j].ff;
+   if(dist[u]!=ESP && dist[v]>dist[u]+w)
+   {
+    dist[v]=dist[u]+w;
+    if(i==n-1 && vis1[v] && vis2[v]) // if relaxation in last step and v is visited in dfs from both (1 && n) means there is a postive cycle.
+    {
+     ff=1;
+     break;
+    }
+   }
+  }
+ }
+ if(ff)
+    cout<<"-1";
+ else
+    cout<<-dist[n];
+}
+
+int main()
+{
+ hs;
+ cin>>n>>e;
+ rep(i,0,e)
+ {
+  ll x,y,w;
+  cin>>x>>y>>w;
+  adj[i]=m_p(-w,m_p(x,y));
+  adj1[x].pb(y);
+  adj2[y].pb(x);
+
+ }
+  mem(vis1,0);
+  mem(vis2,0);
+  dfs1(1);
+  dfs2(n);
+  bellford(1);
+  return 0;
+}
+
+/*
+
+If there is a positive weight cycle which comprises  src && dest then you have to print -1 in that case.
+3 4
+2 1 4
+1 2 -3
+1 3 2
+--> here answer is -1 in SSLP.
+
+But in this case,
+5 5
+2 3 4
+3 4 -3
+4 2 6
+3 1 2
+1 5 3
+
+--> here answer is not -1 in SSLP.
+*/
+
