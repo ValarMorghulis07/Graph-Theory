@@ -476,3 +476,107 @@ int main()
 4 2
 */
 
+// print cycle in directed graph
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=1e5+7;
+vector<ll>adj[N];
+ll color[N],parent[N];
+ll n,e;
+bool ff=0;
+ll start,endd;
+
+bool dfs(ll u)
+{
+ color[u]=1;
+ for(auto xx:adj[u])
+ {
+  if(color[xx]==1)
+  {
+   start=xx;
+   endd=u;
+   ff=1;
+   return 1;
+  }
+  if(color[xx]==0)
+  {
+   parent[xx]=u;
+   if(dfs(xx))
+     return true;
+  }
+
+ }
+ color[u]=2;
+ return false;
+}
+
+int main()
+{
+ hs;
+ cin>>n>>e;
+ rep(i,0,e)
+ {
+  ll x,y;
+  cin>>x>>y;
+  adj[x].pb(y);
+ }
+ rep(i,0,N)
+ {
+  color[i]=0;
+  parent[i]=-1;
+ }
+
+ rep(i,1,n+1)
+ {
+  if(!color[i])
+  {
+   if(dfs(i))
+     break;
+  }
+ }
+ if(!ff)
+    cout<<"IMPOSSIBLE";
+ else
+ {
+  vector<ll>vv;
+  ll zz=endd;
+  while(zz!=start)
+  {
+   vv.pb(zz);
+   zz=parent[zz];
+  }
+  vv.pb(start);
+  reverse(vv.begin(),vv.end());
+  vv.pb(start);
+  cout<<vv.size()<<"\n";
+  rep(i,0,vv.size())
+   cout<<vv[i]<<" ";
+ }
+ return 0;
+
+}
+
+
