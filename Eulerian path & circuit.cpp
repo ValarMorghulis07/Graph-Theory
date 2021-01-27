@@ -1,4 +1,11 @@
 // eulerian path in Directed Graph
+
+/*
+For Directed Graph:--> 
+
+1.) For eulerian circuit:--> every vertex should haave equal in and out degree.
+
+2.) For eulerian path:--> Atmost one vertex with (in-outdegree==1(end node)) and  Atmost one vertex with (outdegree-in==1(start node)) and remaining all vertices should have equal in and outdegree. 
   
 //Problem Link:- https://cses.fi/problemset/task/1693/
 
