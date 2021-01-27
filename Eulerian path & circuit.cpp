@@ -1,4 +1,4 @@
-// eulerian path
+// eulerian path in Directed Graph
   
 //Problem Link:- https://cses.fi/problemset/task/1693/
 
@@ -96,3 +96,25 @@ int main()
 }
 
 // Time complexity : O(E)
+/*
+Graph should also be connected in euleiran path
+
+-i.e--> 1 :
+ 
+3 3
+1 1
+2 3
+3 2
+
+o/p:--> no eulerian cycle
+
+-i.e--> 2 :
+ 
+3 2
+2 3
+3 2
+
+o/p:--> eulerian cycle (b'coz node 1 which is disconnected but it has no edge, so the main agendaa is even if any node is discoonected it should not have edges)
+
+
+
