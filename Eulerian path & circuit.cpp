@@ -115,6 +115,7 @@ o/p:--> no eulerian cycle
 3 2
 
 o/p:--> eulerian cycle (b'coz node 1 which is disconnected but it has no edge, so the main agendaa is even if any node is discoonected it should not have edges)
+*/
 
 
 
