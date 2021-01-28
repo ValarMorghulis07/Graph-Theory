@@ -177,3 +177,94 @@ int main()
 
 }
 
+
+// Hamiltonian Path anad Cycle
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+int FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=11;
+vector<ll>adj[N];
+bool vis[N];
+vector<ll>path;
+ll n,e;
+
+bool HamPath(ll u)
+{
+ if(path.size()==n)
+     return true;
+ for(auto xx:adj[u])
+ {
+  if(!vis[xx])
+  {
+   vis[xx]=1;
+   path.pb(xx);
+   if(HamPath(xx))
+    return true;
+   vis[xx]=0;
+   path.pop_back();
+  }
+ }
+ return false;
+}
+
+int main()
+{
+ hs;
+ cin>>n>>e;
+ map<pair<ll,ll>,bool>mp;
+ rep(i,0,e)
+ {
+  ll x,y;
+  cin>>x>>y;
+  adj[x].pb(y);
+  adj[y].pb(x);
+  mp[{x,y}]=1;
+  mp[{y,x}]=1;
+ }
+ bool ff=0;
+ rep(i,1,n+1) // start from each node
+ {
+  path.clear();
+  mem(vis,0);
+  path.pb(i);
+  vis[i]=1;
+  if(HamPath(i))
+  {
+   cout<<"Hamiltonian Path is there from "<<i<<"\n";
+   ll zz=path.back();
+   if(mp[{zz,i}]) // if there is edge from last node in H.path to source node,then it contains H.Cycle
+   {
+    cout<<"Hamiltonian Cycle are:"<<"\n";
+    for(auto xx:path)
+        cout<<xx<<" ";
+    cout<<i<<"\n";
+   }
+  }
+ }
+ return 0;
+
+}
+
+
