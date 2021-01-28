@@ -54,7 +54,7 @@ ll tsp(ll mask,ll pos)
 {
  if(mask==(1<<n)-1) // if all nodes have been visited finally add cost to return to source node.
     return a[pos][0]; 
- if(dp[mask][pos]!=-1) // if some node have already been visited no need to calculate it again.
+ if(dp[mask][pos]!=-1) // if some node have already been visited no need to calculate it again (look up)
     return dp[mask][pos];
  ll ans=HRX;
  for(ll city=0;city<n;city++)
