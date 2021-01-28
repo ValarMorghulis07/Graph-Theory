@@ -1,3 +1,17 @@
+/*
+
+1.) Hamiltonian Paths--> which visits each node exactly once.
+
+2.) Hamiltonian Cycle--> which visits each node exactly once and return to source node.
+
+3.) TSP--> Minimum Cost hamiltonian Cycle.
+
+*/
+
+// TSP
+
+
+
 #include <bits/stdc++.h>
 #define mem(dp,a) memset(dp,a,sizeof(dp))
 #define pb(x) push_back(x)
@@ -20,7 +34,7 @@ ll a[N][N];
 ll dp[N][N];
 ll n;
 
-//recursion + bitmask
+// recursion + bitmask (O(n!))
 /*ll tsp(ll mask,ll pos)
 {
  if(mask==(1<<n)-1)
@@ -34,7 +48,8 @@ ll n;
  return ans;
 }*/
 
-//dp + bitmask
+// dp + bitmask (O(n*2^n))
+
 ll tsp(ll mask,ll pos)
 {
  if(mask==(1<<n)-1)
@@ -44,8 +59,8 @@ ll tsp(ll mask,ll pos)
  ll ans=HRX;
  for(ll city=0;city<n;city++)
  {
-  if((mask & (1<<city))==0)
-    ans=min(ans,a[pos][city] + tsp((mask|(1<<city)),city));
+  if((mask & (1<<city))==0) // if the city is not visited
+    ans=min(ans,a[pos][city] + tsp((mask|(1<<city)),city)); // here (city is where we have to go and pos is where we are)
  }
  return (dp[mask][pos]=ans);
 }
