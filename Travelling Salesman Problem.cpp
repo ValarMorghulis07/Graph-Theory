@@ -29,9 +29,8 @@ typedef long long int ll;
 ll HRX=1e18;
 ll INF=1e9+7;
 
-const ll N=2*1007;
-ll a[N][N];
-ll dp[N][N];
+const ll N=25;
+ll a[N][N],dp[1LL<<N][N];
 ll n;
 
 // recursion + bitmask (O(n!))
