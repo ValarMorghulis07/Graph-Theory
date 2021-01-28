@@ -83,7 +83,7 @@ int main()
   for(ll i=0;i<(1<<n);i++)
     for(ll j=0;j<n;j++)
       dp[i][j]=-1;
-  cout<<tsp(1,0)<<endl;
+  cout<<tsp(1,0)<<endl; // here mask is 1 b'coz we are starting from node 0
  }
  return 0;
 
