@@ -116,10 +116,11 @@ ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
  freopen("out.txt","w",stdout);
 */
 
-const ll N=25;
+const ll N=22;
 vector<ll>adj[N];
+ll dp[1LL<<N][N];
 ll n,e;
-o
+
 ll doit(ll u,ll mask) // recursion + bitmask (O((n!))
 {
  if(mask==((1LL<<n)-1)) // if we have reached the last city then add one path
@@ -136,6 +137,26 @@ ll doit(ll u,ll mask) // recursion + bitmask (O((n!))
  }
  return ans;
 }
+
+int doit(int u,int mask) // dp+bitmask O(2^n*n) --> for this particular question use int in place of ll.
+{
+ if(mask==(1LL<<n)-1) // if we have reached the last city then add one path
+    return 1;
+ else if(u==n-1) // This is mainly done if the upper (if case) didn't run and this runs means although it has reached city n-1 but not visited them all.
+    return 0;
+ if(dp[mask][u]!=-1)
+    return dp[mask][u];
+ int ans=0;
+ for(auto city:adj[u])
+ {
+  if(mask & (1LL<<city)) // already visited city
+    continue;
+  ans+=doit(city,mask | (1LL<<city));
+  ans%=FCB;
+ }
+ return (dp[mask][u]=ans);
+}
+
 
 int main()
 {
