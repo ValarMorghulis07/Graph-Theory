@@ -169,6 +169,9 @@ int main()
   x--;y--;
   adj[x].pb(y);
  }
+ rep(i,0,1LL<<n)
+  rep(j,0,n)
+    dp[i][j]=-1; // instead of mem(dp,-1) use loop,b'coz it gives wrong answer sometimes
  cout<<doit(0,1); // since we have to start from city 0
  return 0;
 
