@@ -87,3 +87,69 @@ int main()
  return 0;
 
 }
+
+// Problem link: https://cses.fi/problemset/task/1690/
+
+// Hamiltonian Flights --> we have to find no. of hamiltonian paths from 1 to n.
+
+#include<bits/stdc++.h>
+#define mem(dp,a) memset(dp,a,sizeof(dp))
+#define pb(x) push_back(x)
+#define m_p(x,y) make_pair(x,y)
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define per(i,b,a) for (ll i=b;i>=a;i--)
+#define all(v) (v).begin(),(v).end()
+#define ff first
+#define ss second
+#define pi acosl(-1.0l)
+#define hs ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fixed(n) fixed<<setprecision(n)
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll ESP=1e18;
+ll FCB=1e9+7;
+ll prime=119;
+ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+/*
+ freopen("in.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+*/
+
+const ll N=25;
+vector<ll>adj[N];
+ll n,e;
+o
+ll doit(ll u,ll mask) // recursion + bitmask (O((n!))
+{
+ if(mask==((1LL<<n)-1)) // if we have reached the last city then add one path
+    return 1;
+ else if(u==n-1) // This is mainly done if the upper (if case) didn't run and this runs means although it has reached city n-1 but not visited them all.
+    return 0;
+ ll ans=0;
+ for(auto city:adj[u])
+ {
+  if(mask & (1LL<<city)) // already visited city
+    continue;
+  ans+=doit(city,mask | (1LL<<city));
+  ans%=FCB;
+ }
+ return ans;
+}
+
+int main()
+{
+ hs;
+ cin>>n>>e;
+ rep(i,0,e)
+ {
+  ll x,y;
+  cin>>x>>y;
+  x--;y--;
+  adj[x].pb(y);
+ }
+ cout<<doit(0,1); // since we have to start from city 0
+ return 0;
+
+}
+
