@@ -67,7 +67,7 @@ public:
      {
       if(xx==par)
           continue;
-      dist[xx]=dist[u]-subtree[xx]+(subtree.size()-subtree[xx]);
+      dist[xx]=dist[u]-subtree[xx]+(subtree.size()-subtree[xx]); // here (dist[u]-subtree[xx] --> it means we are just removing contibution of xx from u) and (subtree.size()-subtree[xx]-->like in the upper case we added subtree[xx] ,here also we are doing the same by removing subtree of xx from xx) 
       dfs1(xx,u);
      }
     }
