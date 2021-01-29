@@ -57,10 +57,11 @@ public:
       dfs(xx,u);
       subtree[u]+=subtree[xx]; // cnt subtrees in node u
       dist[u]+=dist[xx]+subtree[xx]; // add sum of distances from node node u to all downward nodes --> if u r just asked to do the same thing just below the node u,then this is only sufficient.
+      // (here in dist[u] subtree[xx] is added b'coz the edge which connects u to xx will addup distance in u due to all its subtree.)
      }
     }
     
-    void dfs1(int u,int par)
+    void dfs1(int u,int par) // these are tree reroorting techniques to count on upper nodes wrt to each node
     {
      for(auto xx:adj[u])
      {
