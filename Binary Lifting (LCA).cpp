@@ -77,6 +77,8 @@ ll dist(ll u,ll v) // returning distance b/w two nodes
 ll getAncestor(ll u,ll k) // finding ancestor at distance k from u
 {
  k=lev[u]-k;
+ if(k<0) // it is going above the root
+   return -1;
  ll up=0;
  while((1LL<<up)<=lev[u])
     up++;
