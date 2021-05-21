@@ -485,6 +485,29 @@ int main()
  return 0;
 }
 
+// 787. Cheapest Flights Within K Stops --> Bellmon ford
+
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) 
+    {
+     vector<int>dist(n,INT_MAX);
+     dist[src]=0;
+     for(int i=0;i<=K;i++) // relax k+1 times
+     {
+      vector<int>temp(dist);
+      for(auto xx:flights)
+      {
+        if(dist[xx[0]]!=INT_MAX && temp[xx[1]]>dist[xx[0]]+xx[2]) // updaating temp from dist
+            temp[xx[1]]=dist[xx[0]]+xx[2];
+      }
+      dist=temp;
+     }
+     return (dist[dst]!=INT_MAX ? dist[dst] : -1);
+     
+    }
+};
+
 // single souce longest path (bellford) --> // https://cses.fi/problemset/task/1673
 
 #include<bits/stdc++.h>
