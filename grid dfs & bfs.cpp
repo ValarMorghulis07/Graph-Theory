@@ -526,3 +526,57 @@ int main()
  return 0;
 }
 
+// 1293. Shortest Path in a Grid with Obstacles Elimination
+
+int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
+class Solution {
+public:
+    int shortestPath(vector<vector<int>>& grid, int k) 
+    {
+     int m=grid.size();
+     int n=grid[0].size();
+     int dist[m][n][k+1];
+     for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++)
+             for(int l=0;l<=k;l++)
+                     dist[i][j][l]=INT_MAX;
+     queue<array<int,3>>q;
+     q.push({0,0,k});
+     dist[0][0][k]=0;
+     while(!q.empty())
+     {
+      auto [x,y,rem]=q.front();
+      q.pop();
+      for(int i=0;i<4;i++)
+      {
+       int xx=x+dir[i][0];
+       int yy=y+dir[i][1];
+       if(xx>=0 && xx<m && yy>=0 && yy<n)
+       {
+         if(grid[xx][yy]==0)
+         {
+          if(dist[xx][yy][rem]>1+dist[x][y][rem])
+          {
+           q.push({xx,yy,rem});
+           dist[xx][yy][rem]=1+dist[x][y][rem];
+          }
+         }
+         else if(grid[xx][yy]==1 && rem>0)
+         {
+          if(dist[xx][yy][rem-1]>1+dist[x][y][rem])
+          {
+           q.push({xx,yy,rem-1});
+           dist[xx][yy][rem-1]=1+dist[x][y][rem];
+          }
+         }
+        }
+      }
+     }
+     int ans=INT_MAX;
+     for(int i=0;i<=k;i++)
+         ans=min(ans,dist[m-1][n-1][i]);
+         
+     return (ans==INT_MAX ? -1 : ans);
+    }
+};
+
