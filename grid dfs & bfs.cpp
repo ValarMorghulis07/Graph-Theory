@@ -526,7 +526,7 @@ int main()
  return 0;
 }
 
-// 1293. Shortest Path in a Grid with Obstacles Elimination
+// 1293. Shortest Path in a Grid with Obstacles Elimination --> we will not use vis[][][] here b'coz if you reach a certain box by eleminating 2(suppose) obstacles then u may reach that particular box in lesser steps if u have more value of k.
 
 int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
 class Solution {
