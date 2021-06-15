@@ -64,7 +64,7 @@ public:
      board[xx][yy]='$';//  this prevents reusage of characters
      if(dfs(board,word,m,n,xx,yy,idx+1))
      {
-     // board[xx][yy]=word[idx];// again changing it to its previous state, if found --> better don't use this in this question
+     // board[xx][yy]=word[idx];// again changing it to its previous state, if found --> (here we may/may not use this statement b'coz we have to only return bool val)
       return true;
      }
      board[xx][yy]=word[idx];// again changing it to its previous state, if not found
