@@ -135,7 +135,8 @@ ll n,e;
 void mst(ll root)
 {
     priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>>pq;
-    ll dist[n],parent[n],inMST[n];
+    ll dist[n],parent[n];
+    bool inMST[n];
     for(ll i=0;i<n;i++)
     {
        dist[i]=HRX;
@@ -150,10 +151,11 @@ void mst(ll root)
         ll u=pq.top().second;
         ll uv=pq.top().first;
         pq.pop();
-        if(inMST[u]==1)
+        if(inMST[u])
             continue;
-        cost=cost+uv;
         inMST[u]=1;
+        cost=cost+uv;
+        
 
         for(auto x:adj[u])
         {
