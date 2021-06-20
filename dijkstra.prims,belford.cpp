@@ -500,7 +500,7 @@ public:
       vector<int>temp(dist);
       for(auto xx:flights)
       {
-        if(dist[xx[0]]!=INT_MAX && temp[xx[1]]>dist[xx[0]]+xx[2]) // updaating temp from dist
+        if(dist[xx[0]]!=INT_MAX && temp[xx[1]]>dist[xx[0]]+xx[2]) // updating temp from dist
             temp[xx[1]]=dist[xx[0]]+xx[2];
       }
       dist=temp;
