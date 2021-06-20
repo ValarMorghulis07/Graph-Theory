@@ -21,7 +21,7 @@ ll dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
  freopen("out.txt","w",stdout);
 */
 
-ll doit(ll a[],ll n)
+ll doit(ll a[],ll n) // a[]={4,3,2,1}
 {
  vector<pair<ll,ll>>vv;
  rep(i,0,n)
