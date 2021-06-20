@@ -45,6 +45,59 @@ public:
     }
 };
 
+// 126. Word Ladder II
+
+class Solution {
+public:
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) 
+    {
+     unordered_set<string>ss(wordList.begin(),wordList.end());
+     vector<vector<string>>ans;
+     if(ss.find(endWord)==ss.end())return ans;
+     bool ff=0;
+     queue<vector<string>>q;
+     q.push({beginWord});
+     while(!q.empty())
+     {
+      int len=q.size();
+      unordered_set<string>nextLevel; // if we get it ,we need to erase from ss so that can't be used again & again
+      while(len--)
+      {
+       vector<string>curLevel=q.front();
+       q.pop();
+       string word=curLevel.back();// taking from back b'coz new words which will go from beginWord-->endWord are added at back
+       if(word==endWord)
+       {
+        ans.push_back(curLevel);
+        ff=1;
+       }
+       for(int i=0;i<word.size();i++)
+       {
+        char ch=word[i];
+        for(char ch1='a';ch1<='z';ch1++)
+        {
+         if(ch==ch1)continue;
+         word[i]=ch1;
+         if(ss.find(word)!=ss.end())
+         {
+          nextLevel.insert(word);
+          q.push(curLevel);
+          q.back().push_back(word);
+         }
+        }
+        word[i]=ch;
+       }
+      }
+       if(ff)
+          break;
+       for(auto xx:nextLevel)
+           ss.erase(xx);
+     
+     }
+     return ans;
+    }
+};
+
 // 79. Word Search
 
 int dir[][2]={{0,1},{0,-1},{1,0},{-1,0}};
@@ -102,58 +155,7 @@ public:
 
 // What is the time complexity? I think it is O(N^2 * 4^k) where k is the length of word
 
-// 126. Word Ladder II
 
-class Solution {
-public:
-    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) 
-    {
-     unordered_set<string>ss(wordList.begin(),wordList.end());
-     vector<vector<string>>ans;
-     if(ss.find(endWord)==ss.end())return ans;
-     bool ff=0;
-     queue<vector<string>>q;
-     q.push({beginWord});
-     while(!q.empty())
-     {
-      int len=q.size();
-      unordered_set<string>nextLevel; // if we get it ,we need to erase from ss so that can't be used again & again
-      while(len--)
-      {
-       vector<string>curLevel=q.front();
-       q.pop();
-       string word=curLevel.back();// taking from back b'coz new words which will go from beginWord-->endWord are added at back
-       if(word==endWord)
-       {
-        ans.push_back(curLevel);
-        ff=1;
-       }
-       for(int i=0;i<word.size();i++)
-       {
-        char ch=word[i];
-        for(char ch1='a';ch1<='z';ch1++)
-        {
-         if(ch==ch1)continue;
-         word[i]=ch1;
-         if(ss.find(word)!=ss.end())
-         {
-          nextLevel.insert(word);
-          q.push(curLevel);
-          q.back().push_back(word);
-         }
-        }
-        word[i]=ch;
-       }
-      }
-       if(ff)
-          break;
-       for(auto xx:nextLevel)
-           ss.erase(xx);
-     
-     }
-     return ans;
-    }
-};
 
 
 // 399. Evaluate Division
