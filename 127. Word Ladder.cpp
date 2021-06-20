@@ -175,9 +175,9 @@ public:
      {
       string u=q.front().first;
       double val=q.front().second;
+      q.pop();
       if(u==dest)
           return val;
-      q.pop();
       for(auto xx:mp[u])
       {
        if(!vis[xx.first])
